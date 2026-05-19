@@ -25,28 +25,35 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 /* NAV */
 nav{position:fixed;top:0;width:100%;background:rgba(10,14,26,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:100;padding:0 2rem}
 .nav-inner{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;height:60px}
-.logo{font-size:1.1rem;font-weight:700;color:#fff;letter-spacing:1px}
+.logo{font-size:1.1rem;font-weight:700;color:#fff;letter-spacing:1px;cursor:pointer;transition:.2s}
+.logo:hover{color:var(--cyan)}
 .logo span{color:var(--cyan)}
 .nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;transition:.2s}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;transition:.2s;position:relative}
 .nav-links a:hover{color:var(--cyan)}
+.nav-links a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:var(--cyan);transition:.3s}
+.nav-links a:hover::after{width:100%}
 
 /* HERO */
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 20%,rgba(6,182,212,0.08) 0%,transparent 70%)}
-.hero-badge{display:inline-block;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.3);color:var(--cyan);padding:.3rem 1rem;border-radius:2rem;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem}
+.hero-badge{display:inline-block;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.3);color:var(--cyan);padding:.3rem 1rem;border-radius:2rem;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.7}}
 .hero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.1;margin-bottom:1rem}
 .hero h1 .name{color:#fff}
-.hero h1 .title{color:var(--cyan)}
+.hero h1 .title{color:var(--cyan);animation:slideInDown .8s ease-out}
+@keyframes slideInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:none}}
 .hero-sub{color:var(--muted);font-size:1.1rem;max-width:600px;margin:0 auto 2rem}
 .hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.btn{padding:.75rem 1.75rem;border-radius:.5rem;font-size:.95rem;font-weight:600;cursor:pointer;text-decoration:none;transition:.2s;display:inline-flex;align-items:center;gap:.5rem}
+.btn{padding:.75rem 1.75rem;border-radius:.5rem;font-size:.95rem;font-weight:600;cursor:pointer;text-decoration:none;transition:.2s;display:inline-flex;align-items:center;gap:.5rem;border:none}
 .btn-primary{background:var(--cyan);color:#000}
-.btn-primary:hover{background:#22d3ee;transform:translateY(-2px)}
+.btn-primary:hover{background:#22d3ee;transform:translateY(-2px);box-shadow:0 8px 20px rgba(6,182,212,0.3)}
+.btn-primary:active{transform:translateY(0)}
 .btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
-.btn-outline:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px)}
+.btn-outline:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px);box-shadow:0 8px 20px rgba(6,182,212,0.2)}
 .hero-grid{display:flex;gap:2rem;justify-content:center;margin-top:4rem;flex-wrap:wrap}
-.stat-box{text-align:center}
+.stat-box{text-align:center;cursor:pointer;transition:.3s;padding:1rem;border-radius:.5rem}
+.stat-box:hover{background:rgba(6,182,212,0.05);transform:scale(1.05)}
 .stat-num{font-size:2rem;font-weight:800;color:var(--cyan)}
 .stat-label{color:var(--muted);font-size:.85rem}
 
@@ -61,45 +68,54 @@ section{padding:5rem 2rem}
 /* ABOUT */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
 @media(max-width:700px){.about-grid{grid-template-columns:1fr}}
-.about-avatar{width:220px;height:220px;border-radius:1rem;background:var(--bg3);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:5rem;margin:auto;position:relative}
+.about-avatar{width:220px;height:220px;border-radius:1rem;background:var(--bg3);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:5rem;margin:auto;position:relative;transition:.3s;cursor:pointer}
+.about-avatar:hover{border-color:var(--cyan);transform:scale(1.05)}
 .about-avatar::after{content:'';position:absolute;inset:-6px;border-radius:1.3rem;border:1px solid rgba(6,182,212,0.3)}
-.tag{display:inline-block;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.2);color:var(--cyan);padding:.2rem .75rem;border-radius:2rem;font-size:.8rem;margin:.2rem}
+.tag{display:inline-block;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.2);color:var(--cyan);padding:.2rem .75rem;border-radius:2rem;font-size:.8rem;margin:.2rem;transition:.2s;cursor:pointer}
+.tag:hover{background:rgba(6,182,212,0.2)}
 
 /* SKILLS */
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.skill-card{background:var(--card);border:1px solid var(--border);border-radius:.75rem;padding:1.5rem;transition:.2s}
-.skill-card:hover{border-color:var(--cyan);transform:translateY(-3px)}
-.skill-icon{font-size:2rem;margin-bottom:.75rem}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:.75rem;padding:1.5rem;transition:.2s;cursor:pointer}
+.skill-card:hover{border-color:var(--cyan);transform:translateY(-3px);box-shadow:0 8px 20px rgba(6,182,212,0.15)}
+.skill-icon{font-size:2rem;margin-bottom:.75rem;transition:.3s}
+.skill-card:hover .skill-icon{transform:scale(1.2) rotate(10deg)}
 .skill-card h3{font-size:1rem;font-weight:600;margin-bottom:1rem}
 .skill-list{list-style:none}
-.skill-list li{color:var(--muted);font-size:.9rem;padding:.25rem 0;display:flex;align-items:center;gap:.5rem}
+.skill-list li{color:var(--muted);font-size:.9rem;padding:.25rem 0;display:flex;align-items:center;gap:.5rem;transition:.2s}
+.skill-list li:hover{color:var(--cyan);transform:translateX(5px)}
 .skill-list li::before{content:'▹';color:var(--cyan);font-size:.8rem}
 
 /* PROJECTS */
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
-.proj-card{background:var(--card);border:1px solid var(--border);border-radius:.75rem;padding:1.5rem;transition:.2s;display:flex;flex-direction:column}
-.proj-card:hover{border-color:rgba(6,182,212,0.5);transform:translateY(-3px)}
+.proj-card{background:var(--card);border:1px solid var(--border);border-radius:.75rem;padding:1.5rem;transition:.2s;display:flex;flex-direction:column;cursor:pointer;position:relative}
+.proj-card:hover{border-color:rgba(6,182,212,0.5);transform:translateY(-3px);box-shadow:0 12px 25px rgba(6,182,212,0.2)}
 .proj-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem}
-.proj-icon{font-size:1.8rem}
+.proj-icon{font-size:1.8rem;transition:.3s}
+.proj-card:hover .proj-icon{transform:scale(1.3) rotate(-10deg)}
 .proj-status{font-size:.75rem;padding:.2rem .6rem;border-radius:2rem}
 .status-done{background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.3)}
 .status-lab{background:rgba(59,130,246,0.1);color:#3b82f6;border:1px solid rgba(59,130,246,0.3)}
-.proj-card h3{font-size:1rem;font-weight:600;margin-bottom:.5rem}
-.proj-card p{color:var(--muted);font-size:.875rem;flex:1;margin-bottom:1rem}
+.proj-card h3{font-size:1rem;font-weight:600;margin-bottom:.5rem;color:var(--text);transition:.2s}
+.proj-card:hover h3{color:var(--cyan)}
+.proj-card p{color:var(--muted);font-size:.875rem;flex:1;margin-bottom:1rem;transition:.2s}
 .proj-tags{display:flex;flex-wrap:wrap;gap:.4rem}
-.proj-tag{background:var(--bg3);border:1px solid var(--border);color:var(--muted);font-size:.75rem;padding:.15rem .6rem;border-radius:.3rem}
+.proj-tag{background:var(--bg3);border:1px solid var(--border);color:var(--muted);font-size:.75rem;padding:.15rem .6rem;border-radius:.3rem;transition:.2s;cursor:pointer}
+.proj-tag:hover{border-color:var(--cyan);color:var(--cyan)}
 
 /* CERTIFICATIONS */
 .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
-.cert-card{background:var(--card);border:1px solid var(--border);border-radius:.75rem;padding:1.5rem;text-align:center;transition:.2s}
-.cert-card:hover{border-color:var(--cyan)}
-.cert-icon{font-size:2.5rem;margin-bottom:.75rem}
+.cert-card{background:var(--card);border:1px solid var(--border);border-radius:.75rem;padding:1.5rem;text-align:center;transition:.2s;cursor:pointer}
+.cert-card:hover{border-color:var(--cyan);transform:translateY(-5px);box-shadow:0 12px 25px rgba(6,182,212,0.15)}
+.cert-icon{font-size:2.5rem;margin-bottom:.75rem;transition:.3s}
+.cert-card:hover .cert-icon{transform:scale(1.3) rotateY(20deg)}
 .cert-card h3{font-size:.95rem;font-weight:600;margin-bottom:.3rem}
 .cert-org{color:var(--muted);font-size:.8rem}
 .cert-badge{margin-top:.75rem}
 
 /* CV */
-.cv-section{background:var(--bg2);border:1px solid var(--border);border-radius:1rem;padding:3rem;text-align:center}
+.cv-section{background:var(--bg2);border:1px solid var(--border);border-radius:1rem;padding:3rem;text-align:center;transition:.2s;cursor:pointer}
+.cv-section:hover{border-color:var(--cyan);box-shadow:0 12px 30px rgba(6,182,212,0.15)}
 .cv-section h3{font-size:1.5rem;margin-bottom:.5rem}
 .cv-section p{color:var(--muted);margin-bottom:2rem}
 .cv-preview{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
@@ -108,22 +124,31 @@ section{padding:5rem 2rem}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
 @media(max-width:700px){.contact-grid{grid-template-columns:1fr}}
 .contact-info h3{font-size:1.2rem;margin-bottom:1rem}
-.contact-link{display:flex;align-items:center;gap:.75rem;color:var(--muted);text-decoration:none;padding:.75rem;border-radius:.5rem;transition:.2s;margin-bottom:.5rem}
-.contact-link:hover{background:var(--card);color:var(--cyan)}
-.contact-icon{width:36px;height:36px;background:var(--bg3);border:1px solid var(--border);border-radius:.5rem;display:flex;align-items:center;justify-content:center;font-size:1rem}
+.contact-link{display:flex;align-items:center;gap:.75rem;color:var(--muted);text-decoration:none;padding:.75rem;border-radius:.5rem;transition:.2s;margin-bottom:.5rem;cursor:pointer}
+.contact-link:hover{background:var(--card);color:var(--cyan);transform:translateX(5px)}
+.contact-icon{width:36px;height:36px;background:var(--bg3);border:1px solid var(--border);border-radius:.5rem;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:.3s}
+.contact-link:hover .contact-icon{background:rgba(6,182,212,0.1);border-color:var(--cyan)}
 .form-group{margin-bottom:1rem}
 .form-group label{display:block;color:var(--muted);font-size:.85rem;margin-bottom:.4rem}
 .form-group input,.form-group textarea{width:100%;background:var(--card);border:1px solid var(--border);color:var(--text);padding:.75rem 1rem;border-radius:.5rem;font-size:.95rem;font-family:inherit;transition:.2s}
-.form-group input:focus,.form-group textarea:focus{border-color:var(--cyan)}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--cyan);outline:none;box-shadow:0 0 10px rgba(6,182,212,0.2)}
 .form-group textarea{height:120px;resize:vertical}
 
 /* FOOTER */
 footer{background:var(--bg2);border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--muted);font-size:.875rem}
-footer span{color:var(--cyan)}
+footer span{color:var(--cyan);cursor:pointer;transition:.2s}
+footer span:hover{color:#22d3ee}
 
 /* SCROLL REVEAL */
 .reveal{opacity:0;transform:translateY(30px);transition:.6s}
 .reveal.visible{opacity:1;transform:none}
+
+/* TOAST NOTIFICATIONS */
+.toast{position:fixed;bottom:20px;right:20px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:1rem 1.5rem;border-radius:.5rem;box-shadow:0 8px 20px rgba(0,0,0,0.4);animation:slideIn .3s ease-out;z-index:1000}
+@keyframes slideIn{from{opacity:0;transform:translateX(400px)}to{opacity:1;transform:none}}
+.toast.success{border-color:#22c55e}
+.toast.error{border-color:#f87171}
+.toast.info{border-color:var(--cyan)}
 </style>
 </head>
 <body>
@@ -131,7 +156,7 @@ footer span{color:var(--cyan)}
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <div class="logo">M<span>.</span>Diawara</div>
+    <div class="logo" onclick="scrollToTop()">M<span>.</span>Diawara</div>
     <ul class="nav-links">
       <li><a href="#about">À propos</a></li>
       <li><a href="#skills">Compétences</a></li>
@@ -156,9 +181,9 @@ footer span{color:var(--cyan)}
       <a href="#contact" class="btn btn-outline">📩 Me contacter</a>
     </div>
     <div class="hero-grid">
-      <div class="stat-box"><div class="stat-num">3+</div><div class="stat-label">Années de formation</div></div>
-      <div class="stat-box"><div class="stat-num">10+</div><div class="stat-label">Labs réalisés</div></div>
-      <div class="stat-box"><div class="stat-num">5+</div><div class="stat-label">Technologies maîtrisées</div></div>
+      <div class="stat-box" title="Années de formation" onclick="showToast('En formation depuis 3 ans à ESTEM')"><div class="stat-num">3+</div><div class="stat-label">Années de formation</div></div>
+      <div class="stat-box" title="Labs réalisés" onclick="showToast('Plus de 10 travaux pratiques complétés')"><div class="stat-num">10+</div><div class="stat-label">Labs réalisés</div></div>
+      <div class="stat-box" title="Technologies maîtrisées" onclick="showToast('Cisco, Prometheus, Linux, Zabbix, ASA')"><div class="stat-num">5+</div><div class="stat-label">Technologies maîtrisées</div></div>
     </div>
   </div>
 </section>
@@ -170,15 +195,15 @@ footer span{color:var(--cyan)}
     <h2 class="section-title">À propos de moi</h2>
     <div class="sep"></div>
     <div class="about-grid">
-      <img src="https://i.imgur.com/KH7dDcT.jpeg" class="about-avatar" style="object-fit:cover;">
+      <img src="https://i.imgur.com/KH7dDcT.jpeg" class="about-avatar" style="object-fit:cover;" alt="Modibo Diawara" title="Cliquez pour plus d'infos">
       <div>
-        <p style="color:var(--muted);margin-bottom:1.5rem">Passionné par la cybersécurité et les réseaux, je suis étudiant en 3e année à <strong style="color:var(--text)">ESTEM Casablanca</strong>, spécialisé dans les domaines des systèmes d'information sécurisés et des réseaux d'entreprise. Je maîtrise les principes fondamentaux du routage Cisco, de la sécurité des systèmes et de la supervision informatique.</p>
-        <p style="color:var(--muted);margin-bottom:1.5rem">Rigoureux et curieux, je construis des compétences concrètes à travers des labs pratiques sur Packet Tracer, VirtualBox et des environnements Linux. Je recherche activement une opportunité de stage pour consolider mes connaissances en milieu professionnel.</p>
+        <p style="color:var(--muted);margin-bottom:1.5rem">Passionné par la cybersécurité et les réseaux, je suis étudiant en 3e année à <strong style="color:var(--text)">ESTEM Casablanca</strong> dans le programme SRSCI (Sécurité Réseaux Systèmes et Cloud Informatique).</p>
+        <p style="color:var(--muted);margin-bottom:1.5rem">Rigoureux et curieux, je construis des compétences concrètes à travers des labs pratiques sur Packet Tracer, VirtualBox et des environnements de production. Je recherche actuellement une opportunité de stage pour approfondir mon expertise.</p>
         <div>
-          <span class="tag">📍 Casablanca, Maroc</span>
-          <span class="tag">🎓 ESTEM — SRSCI 3</span>
-          <span class="tag">🔍 En recherche de stage</span>
-          <span class="tag">🌐 Français · Anglais</span>
+          <span class="tag" title="Localisation">📍 Casablanca, Maroc</span>
+          <span class="tag" title="Formation">🎓 ESTEM — SRSCI 3</span>
+          <span class="tag" title="Disponibilité" onclick="showToast('Disponible pour stage/alternance')">🔍 En recherche de stage</span>
+          <span class="tag" title="Langues">🌐 Français · Anglais</span>
         </div>
       </div>
     </div>
@@ -247,7 +272,7 @@ footer span{color:var(--cyan)}
     <h2 class="section-title">Projets & Labs</h2>
     <div class="sep"></div>
     <div class="projects-grid">
-      <div class="proj-card">
+      <div class="proj-card" onclick="showToast('AAA / RADIUS sur Cisco IOS - Infrastructure sécurisée')">
         <div class="proj-top">
           <div class="proj-icon">🔑</div>
           <span class="proj-status status-done">Réalisé</span>
@@ -258,7 +283,7 @@ footer span{color:var(--cyan)}
           <span class="proj-tag">Cisco IOS</span><span class="proj-tag">RADIUS</span><span class="proj-tag">Packet Tracer</span>
         </div>
       </div>
-      <div class="proj-card">
+      <div class="proj-card" onclick="showToast('VPN GRE + OSPF — Topologie multi-routeurs configurée')">
         <div class="proj-top">
           <div class="proj-icon">🛡️</div>
           <span class="proj-status status-done">Réalisé</span>
@@ -269,7 +294,7 @@ footer span{color:var(--cyan)}
           <span class="proj-tag">GRE VPN</span><span class="proj-tag">OSPF</span><span class="proj-tag">Cisco 1941</span>
         </div>
       </div>
-      <div class="proj-card">
+      <div class="proj-card" onclick="showToast('Supervision Prometheus/Grafana - Monitoring en temps réel')">
         <div class="proj-top">
           <div class="proj-icon">📈</div>
           <span class="proj-status status-done">Réalisé</span>
@@ -280,7 +305,7 @@ footer span{color:var(--cyan)}
           <span class="proj-tag">Prometheus</span><span class="proj-tag">Grafana</span><span class="proj-tag">Ubuntu</span>
         </div>
       </div>
-      <div class="proj-card">
+      <div class="proj-card" onclick="showToast('Zabbix 6.0 - Solution monitoring complète déployée')">
         <div class="proj-top">
           <div class="proj-icon">🔍</div>
           <span class="proj-status status-lab">Lab</span>
@@ -291,7 +316,7 @@ footer span{color:var(--cyan)}
           <span class="proj-tag">Zabbix</span><span class="proj-tag">SNMP</span><span class="proj-tag">Linux</span>
         </div>
       </div>
-      <div class="proj-card">
+      <div class="proj-card" onclick="showToast('Cisco ASA - Firewall sécurisé avec ACL et NAT')">
         <div class="proj-top">
           <div class="proj-icon">🔥</div>
           <span class="proj-status status-done">Réalisé</span>
@@ -302,7 +327,7 @@ footer span{color:var(--cyan)}
           <span class="proj-tag">Cisco ASA</span><span class="proj-tag">ACL</span><span class="proj-tag">Scapy</span>
         </div>
       </div>
-      <div class="proj-card">
+      <div class="proj-card" onclick="showToast('SQL Server - Administration et sauvegarde de base de données')">
         <div class="proj-top">
           <div class="proj-icon">🗄️</div>
           <span class="proj-status status-done">Réalisé</span>
@@ -324,25 +349,25 @@ footer span{color:var(--cyan)}
     <h2 class="section-title">Certifications & Formations</h2>
     <div class="sep"></div>
     <div class="cert-grid">
-      <div class="cert-card">
+      <div class="cert-card" onclick="showToast('AZ-900: Microsoft Azure Fundamentals en préparation')">
         <div class="cert-icon">☁️</div>
         <h3>AZ-900</h3>
         <div class="cert-org">Microsoft Azure Fundamentals</div>
         <div class="cert-badge"><span class="tag">En préparation</span></div>
       </div>
-      <div class="cert-card">
+      <div class="cert-card" onclick="showToast('SC-900: Microsoft Security Fundamentals en préparation')">
         <div class="cert-icon">🔐</div>
         <h3>SC-900</h3>
         <div class="cert-org">Microsoft Security Fundamentals</div>
         <div class="cert-badge"><span class="tag">En préparation</span></div>
       </div>
-      <div class="cert-card">
+      <div class="cert-card" onclick="showToast('LPIC-1: Linux Professional Institute en préparation')">
         <div class="cert-icon">🐧</div>
         <h3>LPIC-1</h3>
         <div class="cert-org">Linux Professional Institute</div>
         <div class="cert-badge"><span class="tag">En préparation</span></div>
       </div>
-      <div class="cert-card">
+      <div class="cert-card" onclick="showToast('SRSCI 3: Formation actuellement en cours à ESTEM')">
         <div class="cert-icon">🎓</div>
         <h3>SRSCI 3</h3>
         <div class="cert-org">ESTEM Casablanca — 2025/2026</div>
@@ -360,8 +385,8 @@ footer span{color:var(--cyan)}
       <h3>Mon Curriculum Vitae</h3>
       <p>Téléchargez mon CV complet pour découvrir mon parcours, mes compétences et mes expériences.</p>
       <div class="cv-preview">
-        <a href="#" class="btn btn-primary" onclick="alert('Ajouter votre lien CV ici')">⬇️ Télécharger le CV (PDF)</a>
-      <a href="https://www.linkedin.com/in/modibo-diawara-343065287" class="btn btn-outline" target="_blank">🔗 Voir LinkedIn</a>
+        <a href="#" class="btn btn-primary" onclick="event.preventDefault(); downloadCV()">⬇️ Télécharger le CV (PDF)</a>
+        <a href="https://www.linkedin.com/in/modibo-diawara-343065287" class="btn btn-outline" target="_blank" onclick="showToast('Ouverture de LinkedIn...')">🔗 Voir LinkedIn</a>
       </div>
     </div>
   </div>
@@ -377,17 +402,17 @@ footer span{color:var(--cyan)}
       <div>
         <h3 class="contact-info">Restons en contact</h3>
         <p style="color:var(--muted);margin:1rem 0 1.5rem">Disponible pour un stage, une alternance ou une opportunité dans le domaine de la cybersécurité et des réseaux au Maroc ou en Afrique francophone.</p>
-        <a href="mailto:modibodiawara894@gmail.com" class="contact-link">
+        <a href="mailto:modibodiawara894@gmail.com" class="contact-link" onclick="copyToClipboard('modibodiawara894@gmail.com')">
           <div class="contact-icon">📧</div>
           <div><div style="color:var(--text)">Email</div><div style="font-size:.8rem">modibodiawara894@gmail.com</div></div>
         </a>
-        <a href="https://www.linkedin.com/in/modibo-diawara-343065287" class="contact-link" target="_blank">
+        <a href="https://www.linkedin.com/in/modibo-diawara-343065287" class="contact-link" target="_blank" onclick="showToast('Ouverture de LinkedIn...')">
           <div class="contact-icon">💼</div>
           <div><div style="color:var(--text)">LinkedIn</div><div style="font-size:.8rem">linkedin.com/in/modibo-diawara</div></div>
         </a>
-        <a href="https://github.com" class="contact-link" target="_blank">
+        <a href="https://github.com/Modibo204" class="contact-link" target="_blank" onclick="showToast('Ouverture de GitHub...')">
           <div class="contact-icon">🐙</div>
-          <div><div style="color:var(--text)">GitHub</div><div style="font-size:.8rem">github.com/modibo</div></div>
+          <div><div style="color:var(--text)">GitHub</div><div style="font-size:.8rem">github.com/Modibo204</div></div>
         </a>
         <div class="contact-link">
           <div class="contact-icon">📍</div>
@@ -396,16 +421,16 @@ footer span{color:var(--cyan)}
       </div>
       <div>
         <div class="form-group">
-          <label>Nom complet</label>
-          <input type="text" placeholder="Votre nom">
+          <label for="name">Nom complet</label>
+          <input type="text" id="name" placeholder="Votre nom">
         </div>
         <div class="form-group">
-          <label>Email</label>
-          <input type="email" placeholder="votre@email.com">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="votre@email.com">
         </div>
         <div class="form-group">
-          <label>Message</label>
-          <textarea placeholder="Votre message..."></textarea>
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Votre message..."></textarea>
         </div>
         <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="sendMessage()">📩 Envoyer le message</button>
         <p id="form-msg" style="margin-top:.75rem;font-size:.875rem;text-align:center;display:none"></p>
@@ -416,27 +441,69 @@ footer span{color:var(--cyan)}
 
 <!-- FOOTER -->
 <footer>
-  <p>Conçu & développé par <span>Modibo Diawara</span> · Casablanca, Maroc · 2025</p>
+  <p>Conçu & développé par <span onclick="showToast('Modibo Diawara - Full Stack Developer')">Modibo Diawara</span> · Casablanca, Maroc · <span id="year">2025</span></p>
   <p style="margin-top:.5rem;font-size:.8rem">Étudiant SRSCI @ ESTEM · Cybersécurité & Réseaux</p>
 </footer>
 
 <script>
+// Intersection Observer pour révéler les sections
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') });
 }, {threshold: 0.1});
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
+// Mise à jour de l'année
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Notifications Toast
+function showToast(message, type = 'info') {
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
+}
+
+// Copier dans le presse-papiers
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('✅ Email copié !', 'success');
+  }).catch(() => {
+    showToast('❌ Erreur de copie', 'error');
+  });
+}
+
+// Télécharger le CV
+function downloadCV() {
+  showToast('⚠️ Lien CV à ajouter dans les paramètres', 'info');
+}
+
+// Remontée vers le haut
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Envoyer un message
 async function sendMessage() {
-  const inputs = document.querySelectorAll('.form-group input, .form-group textarea');
-  const name = inputs[0].value.trim();
-  const email = inputs[1].value.trim();
-  const message = inputs[2].value.trim();
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
   const msg = document.getElementById('form-msg');
 
   if(!name || !email || !message) {
     msg.style.display='block';
     msg.style.color='#f87171';
     msg.textContent='⚠️ Veuillez remplir tous les champs.';
+    showToast('⚠️ Remplissez tous les champs', 'error');
+    return;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailRegex.test(email)) {
+    msg.style.display='block';
+    msg.style.color='#f87171';
+    msg.textContent='⚠️ Veuillez entrer un email valide.';
+    showToast('⚠️ Email invalide', 'error');
     return;
   }
 
@@ -459,7 +526,10 @@ async function sendMessage() {
       msg.style.display='block';
       msg.style.color='#22c55e';
       msg.textContent='✅ Message envoyé ! Je vous répondrai bientôt.';
-      inputs.forEach(i => i.value='');
+      document.getElementById('name').value='';
+      document.getElementById('email').value='';
+      document.getElementById('message').value='';
+      showToast('✅ Message envoyé avec succès !', 'success');
     } else {
       throw new Error();
     }
@@ -467,11 +537,15 @@ async function sendMessage() {
     msg.style.display='block';
     msg.style.color='#f87171';
     msg.textContent='❌ Erreur lors de l\'envoi. Réessayez.';
+    showToast('❌ Erreur lors de l\'envoi', 'error');
   }
 
   btn.textContent='📩 Envoyer le message';
   btn.disabled=false;
 }
+
+console.log('%c🚀 Portfolio Modibo Diawara', 'font-size: 20px; color: #06b6d4; font-weight: bold;');
+console.log('%cInteractivité activée ✓', 'color: #22c55e; font-size: 14px;');
 </script>
 </body>
 </html>
